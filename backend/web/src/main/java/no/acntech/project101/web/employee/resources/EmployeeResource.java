@@ -2,10 +2,16 @@ package no.acntech.project101.web.employee.resources;
 
 import java.util.List;
 
+import no.acntech.project101.employee.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000")
+@RestController
+@RequestMapping("employees")
 //TODO This is a REST controler and should receive request on path employees
 public class EmployeeResource {
 
@@ -13,6 +19,7 @@ public class EmployeeResource {
     public EmployeeResource() {
     }
 
+    @GetMapping
     public ResponseEntity<List<EmployeeDto>> findAll() {
         //TODO create a GET endpoint find all employees in the database and return them
         return null;
