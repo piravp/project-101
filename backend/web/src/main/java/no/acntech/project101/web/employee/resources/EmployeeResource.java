@@ -52,7 +52,6 @@ public class EmployeeResource {
 
     @PostMapping
     public ResponseEntity createEmployee(@RequestBody final EmployeeDto employeeDto) {
-        //TODO Create a POST endpoint that accepts an employeeDTO and saves it in the database
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(55L)
@@ -60,14 +59,15 @@ public class EmployeeResource {
         return ResponseEntity.created(uri).build();
     }
 
-
-    public ResponseEntity deleteEmployee() {
-        // TODO Create a DELETE endpoint that deletes a specific employee
-        return null;
+    @DeleteMapping("{id}")
+    public ResponseEntity deleteEmployee(@PathVariable final Long id) {
+        return ResponseEntity.accepted().build();
     }
 
-    public ResponseEntity updateEmployee() {
-        //TODO Create a PATCH endpoint that updates an employee with new values
-        return null;
+    @PatchMapping("{id}")
+    public ResponseEntity updateEmployee(@PathVariable final Long id, @RequestBody final EmployeeDto employeeDto) {
+        EmployeeDto employee = new EmployeeDto(id, "Ola", "Nordmann", LocalDate.of(1950, 4, 20), 78L );
+
+        return ResponseEntity.ok(employee);
     }
 }
