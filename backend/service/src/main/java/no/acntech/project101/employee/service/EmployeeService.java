@@ -3,26 +3,35 @@ package no.acntech.project101.employee.service;
 import java.util.List;
 import java.util.Optional;
 
-import no.acntech.project101.employee.Employee;
+import org.springframework.stereotype.Service;
 
+import no.acntech.project101.employee.Employee;
+import no.acntech.project101.employee.repository.EmployeeRepository;
+
+@Service
 public class EmployeeService {
 
-    public Employee save(final Employee employee) {
-        //TODO
-        return null;
+    private final EmployeeRepository employeeRepository;
+
+    public EmployeeService(final EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
-    public Optional<Employee> findById(final Long id) {
-        //TODO
-        return null;
+    public Employee save(final Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public List<Employee> findAll() {
-        //TODO
-        return null;
+        return employeeRepository.findAll();
     }
 
-    public void delete(final Long id) {
-        //TODO
+    public Optional<Employee> findById(final Long id) {
+        return employeeRepository.findById(id);
+    }
+
+    public void delete(Long id) {
+        if(employeeRepository.existsById(id)){
+            employeeRepository.deleteById(id);
+        }
     }
 }
