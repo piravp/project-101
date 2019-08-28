@@ -1,5 +1,5 @@
-//TODO when everything is done, this test can test your employee endpoints. It will probably not compile due to naming. Fix as needed
-package no.acntech.project101.web.employee.resources;
+/** TODO when everything is done, this test can test your employee endpoints. It will probably not compile due to naming. Fix as needed
+ * package no.acntech.project101.web.employee.resources;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -49,9 +49,9 @@ class EmployeeResourceIT {
     void findAll() {
         final Company acme = companyService.save(new Company("ACME", "123456789"));
         final Employee ken = new Employee("Ken", "Guru", LocalDate.of(1994, 10, 1));
-//        ken.setCompany(acme);
+        ken.setCompany(acme);
         final Employee tor = new Employee("Tor", "Divel", LocalDate.of(1994, 10, 1));
-//        tor.setCompany(acme);
+        tor.setCompany(acme);
 
         employeeService.save(ken);
         employeeService.save(tor);
@@ -132,4 +132,4 @@ class EmployeeResourceIT {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
     }
 }
-
+*/
