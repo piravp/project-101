@@ -27,7 +27,13 @@ class EmployeeServiceTest {
 
     @Test
     void save() {
-        //TODO: implement
+        final Employee employee = new Employee("Piraveen", "Perinparajan", LocalDate.of(1995, 9, 20 ));
+        when(employeeRepository.save(employee)).thenReturn(employee);
+        final Employee savedEmployee = employeeService.save(employee);
+        assertThat(savedEmployee.getFirstName()).isEqualTo(employee.getFirstName());
+        assertThat(savedEmployee.getLastName()).isEqualTo(employee.getLastName());
+        assertThat(savedEmployee.getDateOfBirth()).isEqualTo(employee.getDateOfBirth());
+
     }
 
     @Test
@@ -45,13 +51,24 @@ class EmployeeServiceTest {
 
     @Test
     void findAll() {
-        //TODO: implement
+        final Employee employee1 = new Employee("Piraveen", "Perinparajan", LocalDate.of(1995, 9, 20 ));
+        final Employee employee2 = new Employee("Ola", "Nordmann", LocalDate.of(1990, 3, 12 ));
+        when(employeeRepository.findAll()).thenReturn(Arrays.asList(employee1, employee2));
+        List<Employee> employees = employeeService.findAll();
+
+        assertThat(employees).hasSize(2);
+        assertThat(employees).contains(employee1, employee2);
     }
 
     @Test
     void deleteExisting() {
-        //TODO: implement
+        when(employeeRepository.existsById(1L)).thenReturn(true);
+
+        employeeService.delete(1L);
+
+        verify(employeeRepository).deleteById(1L);
     }
+
 
     @Test
     void deleteNonExisting() {
